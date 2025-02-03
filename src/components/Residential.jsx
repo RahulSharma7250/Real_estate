@@ -1,6 +1,70 @@
 import React from "react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import Navbar from './Navbar';
-import { Heart, ChevronRight } from "lucide-react"; // Import the Navbar component
+import { Heart, ChevronRight } from "lucide-react";
+import house8 from "../assets/images/house8.jpg";
+import house10 from "../assets/images/house10.jpg"
+
+
+// Mock properties array
+const properties = [
+  {
+    id: 1,
+    imageSrc: house8,
+    altText: "Vaichal Vastu KalpaVruksha",
+    badges: ["RERA", "ZERO BROKERAGE", "3D"],
+    name: "Vaichal Vastu KalpaVruksha",
+    location: "1, 2 BHK Flat in Pirangut, Pune",
+    prices: [
+      { type: "1 BHK", price: "₹31 L" },
+      { type: "2 BHK", price: "₹35 - 36 L" },
+    ],
+    description: "Spacious 1,2 BHK apartments in Pirangut are available for...",
+    builder: "Vaichal Constructions",
+  },
+  {
+    id: 2,
+    imageSrc: house10,
+    altText: "Silver Wisteria",
+    badges: ["RERA", "ZERO BROKERAGE", "3D"],
+    name: "Silver Wisteria",
+    location: "1, 2 BHK Flat in Chikhali, Pune",
+    prices: [
+      { type: "1 BHK", price: "₹24.76 L" },
+      { type: "2 BHK", price: "₹35.75 L" },
+    ],
+    description: "Luxury apartments with easy access to nearby schools and hospitals...",
+    builder: "Silver Group Pune",
+  },
+  {
+    id: 3,
+    imageSrc: "/placeholder.svg",
+    altText: "Emerald Heights",
+    badges: ["Gated Community", "Swimming Pool"],
+    name: "Emerald Heights",
+    location: "3, 4 BHK Villas in Wakad, Pune",
+    prices: [
+      { type: "3 BHK", price: "₹80 L" },
+      { type: "4 BHK", price: "₹1.2 Cr" },
+    ],
+    description: "Modern villas in a gated community with premium amenities...",
+    builder: "Emerald Builders",
+  },
+  {
+    id: 4,
+    imageSrc: "/placeholder.svg",
+    altText: "Palm Residency",
+    badges: ["Under Construction", "Clubhouse"],
+    name: "Palm Residency",
+    location: "2, 3 BHK Apartments in Baner, Pune",
+    prices: [
+      { type: "2 BHK", price: "₹45 L" },
+      { type: "3 BHK", price: "₹65 L" },
+    ],
+    description: "Stylish apartments with a premium clubhouse and green spaces...",
+    builder: "Palm Builders",
+  },
+];
 
 export default function Residential() {
   return (
@@ -8,7 +72,7 @@ export default function Residential() {
       {/* Navbar Component */}
       <Navbar />
 
-      {/* The rest of your page content */}
+      {/* Main Content */}
       <div className="w-full max-w-6xl mx-auto p-4">
         {/* Filters */}
         <div className="flex items-center gap-3 overflow-x-auto pb-4 mb-6 border-b border-gray-300">
@@ -28,64 +92,31 @@ export default function Residential() {
 
         {/* Property Cards */}
         <div className="space-y-6">
-          {/* Property Card 1 */}
-          <PropertyCard
-            imageSrc="/placeholder.svg"
-            altText="Vaichal Vastu KalpaVruksha"
-            badges={["RERA", "ZERO BROKERAGE", "3D"]}
-            name="Vaichal Vastu KalpaVruksha"
-            location="1, 2 BHK Flat in Pirangut, Pune"
-            prices={[{ type: "1 BHK", price: "₹31 L" }, { type: "2 BHK", price: "₹35 - 36 L" }]}
-            description="Spacious 1,2 BHK apartments in Pirangut are available for..."
-            builder="Vaichal Constructions"
-          />
-
-          {/* Property Card 2 */}
-          <PropertyCard
-            imageSrc="/placeholder.svg"
-            altText="Silver Wisteria"
-            badges={["RERA", "ZERO BROKERAGE", "3D"]}
-            name="Silver Wisteria"
-            location="1, 2 BHK Flat in Chikhali, Pune"
-            prices={[{ type: "1 BHK", price: "₹24.76 L" }, { type: "2 BHK", price: "₹35.75 L" }]}
-            description="Luxury apartments with easy access to nearby schools and hospitals..."
-            builder="Silver Group Pune"
-          />
-
-          {/* Property Card 3 */}
-          <PropertyCard
-            imageSrc="/placeholder.svg"
-            altText="Emerald Heights"
-            badges={["Gated Community", "Swimming Pool"]}
-            name="Emerald Heights"
-            location="3, 4 BHK Villas in Wakad, Pune"
-            prices={[{ type: "3 BHK", price: "₹80 L" }, { type: "4 BHK", price: "₹1.2 Cr" }]}
-            description="Modern villas in a gated community with premium amenities..."
-            builder="Emerald Builders"
-          />
-
-          {/* Property Card 4 */}
-          <PropertyCard
-            imageSrc="/placeholder.svg"
-            altText="Palm Residency"
-            badges={["Under Construction", "Clubhouse"]}
-            name="Palm Residency"
-            location="2, 3 BHK Apartments in Baner, Pune"
-            prices={[{ type: "2 BHK", price: "₹45 L" }, { type: "3 BHK", price: "₹65 L" }]}
-            description="Stylish apartments with a premium clubhouse and green spaces..."
-            builder="Palm Builders"
-          />
+          {properties.map((property) => (
+            <Link to={`/property/${property.id}`} className="block" key={property.id}>
+              <PropertyCard
+                imageSrc={property.imageSrc}
+                altText={property.altText}
+                badges={property.badges}
+                name={property.name}
+                location={property.location}
+                prices={property.prices}
+                description={property.description}
+                builder={property.builder}
+              />
+            </Link>
+          ))}
         </div>
       </div>
     </div>
   );
 }
 
-// Property Card Component (no changes needed here)
+// Property Card Component
 function PropertyCard({ imageSrc, altText, badges, name, location, prices, description, builder }) {
   return (
     <div className="flex border rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow transform hover:scale-105">
-      {/* Image on the left */}
+      {/* Image Section */}
       <div className="relative w-1/2">
         <button className="absolute right-3 top-3 z-10 bg-white/80 hover:bg-white/90 rounded-full p-1 transition">
           <Heart className="h-6 w-6 text-pink-500 hover:scale-110" />
@@ -115,7 +146,7 @@ function PropertyCard({ imageSrc, altText, badges, name, location, prices, descr
         />
       </div>
 
-      {/* Text on the right */}
+      {/* Text Section */}
       <div className="w-1/2 p-6 bg-gradient-to-br from-gray-50 to-gray-200">
         <div className="flex justify-between items-start mb-4">
           <div>

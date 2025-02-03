@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Phone, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import apar4 from "../assets/images/apar4.jpg"
+import apar6 from "../assets/images/apar6.jpg"
+import apar7 from "../assets/images/apar7.jpg"
 
 export default function Listing() {
   const [currentSlide, setCurrentSlide] = useState(0);  // Handle slide changes
@@ -15,9 +18,9 @@ export default function Listing() {
   const [showContactNumber, setShowContactNumber] = useState(false); // Show contact message state
 
   const properties = [
-    { id: 1, name: "Kosmic Kourtyard Phase 2", location: "Wagholi, Pune", priceRange: "63.84 - 91.69", type: "2, 3 BHK Apartments", priceIncrease: "18.9%", image: "/placeholder.svg?height=200&width=200", phoneNumber: "+91 9876543210" },
-    { id: 2, name: "Sankalp Alyssum", location: "Dudulgaon, Pune", priceRange: "48 - 67.84", type: "2, 3 BHK Apartments", priceIncrease: "7.8%", image: "/placeholder.svg?height=200&width=200", phoneNumber: "+91 9123456789" },
-    { id: 3, name: "Urban Skyline", location: "Ravet, Pune", priceRange: "85.5 - 150.3", type: "2, 3, 4 BHK Apartments", priceIncrease: "10.2%", image: "/placeholder.svg?height=200&width=200", phoneNumber: "+91 9012345678" },
+    { id: 1, name: "Kosmic Kourtyard Phase 2", location: "Wagholi, Pune", priceRange: "63.84 - 91.69", type: "2, 3 BHK Apartments", priceIncrease: "18.9%", image: apar4, phoneNumber: "+91 9876543210" },
+    { id: 2, name: "Sankalp Alyssum", location: "Dudulgaon, Pune", priceRange: "48 - 67.84", type: "2, 3 BHK Apartments", priceIncrease: "7.8%", image: apar6, phoneNumber: "+91 9123456789" },
+    { id: 3, name: "Urban Skyline", location: "Ravet, Pune", priceRange: "85.5 - 150.3", type: "2, 3, 4 BHK Apartments", priceIncrease: "10.2%", image: apar7, phoneNumber: "+91 9012345678" },
   ];
 
   const handleInputChange = (e) => {
